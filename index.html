@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Puzzle Slider</title>
+    <link rel="stylesheet" href="assets/css/prism.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body lang="en">
+    <div></div>
+    <h2 class="state-title">'auto' state</h2>
+    <div class="puzzle-slider-1">
+      <div class="slides"><img class="item" src="assets/images/img-1.jpg" alt="image"><img class="item" src="assets/images/img-2.jpg" alt="image"><img class="item" src="assets/images/img-3.jpg" alt="image"></div>
+    </div>
+    <h2 class="state-title">10 X 7</h2>
+    <div class="code">
+      <pre><code class="language-javascript">$('.puzzle-slider-2').puzzleSlider({
+	slicesX: 10,
+	slicesY: 7
+});</code></pre>
+    </div>
+    <div class="puzzle-slider-2">
+      <div class="slides"><img class="item" src="assets/images/img-1.jpg" alt="image"><img class="item" src="assets/images/img-2.jpg" alt="image"><img class="item" src="assets/images/img-3.jpg" alt="image"></div>
+    </div>
+    <h2 class="state-title">'hover' state</h2>
+    <div class="puzzle-slider-3">
+      <div class="slides"><img class="item" src="assets/images/img-1.jpg" alt="image"><img class="item" src="assets/images/img-2.jpg" alt="image"><img class="item" src="assets/images/img-3.jpg" alt="image"></div>
+    </div>
+    <!-- scripts-->
+    <script type="text/javascript" src="assets/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/prism.min.js"></script>
+    <script type="text/javascript" src="assets/js/puzzleSlider.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <!-- -  Grunt Livereload-->
+    <script src="//localhost:9000/livereload.js"></script>
+  </body>
+</html>

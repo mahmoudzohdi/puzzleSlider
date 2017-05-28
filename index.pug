@@ -1,0 +1,50 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		title Puzzle Slider
+		link(rel="stylesheet" href="assets/css/prism.min.css")
+		link(rel="stylesheet" href="assets/css/styles.css")
+
+	body(lang="en")
+		div
+		h2.state-title 'auto' state
+		.puzzle-slider-1
+			.slides
+				img.item(src="assets/images/img-1.jpg", alt="image")
+				img.item(src="assets/images/img-2.jpg", alt="image")
+				img.item(src="assets/images/img-3.jpg", alt="image")
+
+		h2.state-title 10 X 7
+		.code
+			pre
+				code.language-javascript
+					|$('.puzzle-slider-2').puzzleSlider({
+					|	slicesX: 10,
+					|	slicesY: 7
+					|});
+
+		.puzzle-slider-2
+			.slides
+				img.item(src="assets/images/img-1.jpg", alt="image")
+				img.item(src="assets/images/img-2.jpg", alt="image")
+				img.item(src="assets/images/img-3.jpg", alt="image")
+		
+		h2.state-title 'hover' state
+		.puzzle-slider-3
+			.slides
+				img.item(src="assets/images/img-1.jpg", alt="image")
+				img.item(src="assets/images/img-2.jpg", alt="image")
+				img.item(src="assets/images/img-3.jpg", alt="image")
+		
+		// scripts
+		script(type="text/javascript" src="assets/js/jquery-1.11.3.min.js")
+		script(type="text/javascript" src="assets/js/prism.min.js")
+		script(type="text/javascript" src="assets/js/puzzleSlider.js")
+		script(type="text/javascript" src="assets/js/main.js")
+			
+		// -  Grunt Livereload
+		script(src="//localhost:9000/livereload.js")
+

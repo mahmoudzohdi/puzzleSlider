@@ -1,0 +1,16 @@
+{
+  "name": "puzzle-slider",
+  "author": {
+    "name": "Mahmoud Zohdi",
+    "email": "mahmoud.zohdi@gmail.com"
+  },
+  "version": "1.0.0",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-pug": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}

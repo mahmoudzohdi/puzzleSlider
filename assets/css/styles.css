@@ -1,0 +1,71 @@
+.puzzle-slider {
+  width: 100%;
+  max-width: 800px;
+  height: 600px;
+  margin: 15px auto 30px;
+}
+@media (max-width: 767px) {
+  .puzzle-slider {
+    height: 300px;
+  }
+}
+@media (max-width: 550px) {
+  .puzzle-slider {
+    height: 200px;
+  }
+}
+
+.state-title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+footer {
+  text-align: center;
+}
+footer p {
+  display: inline-block;
+  height: 50px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
+  padding: 11px 50px 0;
+  font-size: 17px;
+  box-sizing: border-box;
+}
+footer img {
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+footer .love {
+  width: 15px;
+}
+footer .logo img {
+  width: 85px;
+  vertical-align: bottom;
+}
+
+.code {
+  text-align: center;
+}
+.code pre {
+  display: inline-block;
+}
+.code pre code {
+  overflow: hidden !important;
+}
+.code pre code:before {
+  font-size: 0.7em !important;
+}
+
+@media (max-width: 500px) {
+  code, kbd, pre, samp {
+    font-size: 0.85em;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
