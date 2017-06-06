@@ -97,6 +97,7 @@
 					'-ms-transition': 'opacity 0.5s linear',
 				});
 			}SlidesStyle();
+
 			function SlidesActiveStyle(){
 				slices.find('.inner-slice.active').css({
 					'transition': 'none',
@@ -229,6 +230,7 @@
 			$(window).bind('resize', resizing);
 		}
 		sliderInit();
-			
+		
+		return this;
 	};
 }(window.jQuery, window, document));
