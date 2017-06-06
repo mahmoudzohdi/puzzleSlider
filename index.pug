@@ -9,8 +9,38 @@ html
 		link(rel="stylesheet" href="assets/css/styles.css")
 
 	body(lang="en")
-		div
-		h2.state-title 'auto' state
+		
+		h2.state-title Default Settings
+		.code
+			pre
+				code.language-javascript
+					|{
+					|	state: 'auto',
+					|	slicesX: 6,
+					|	slicesY: 5,
+					|	slicesTime: 3000,
+					|	waitingTime: 4000
+					|}
+			p
+				|and MUST add
+				pre
+					code.language-markup
+						|class="item"
+				br
+				|to each img tag like this:
+			pre
+				code.language-markup
+					|&lt;div class="slider-container"&gt;
+					|	&lt;img src="..." alt="image" class="item"/&gt;
+					|	&lt;img src="..." alt="image" class="item"/&gt;
+					|	&lt;img src="..." alt="image" class="item"/&gt;
+					|&lt;/div&gt;
+
+		h2.state-title Simple Usage
+		.code
+			pre 
+				code.language-javascript
+					|$('.puzzle-slider-1').puzzleSlider();
 		.puzzle-slider-1
 			.slides
 				img.item(src="assets/images/img-1.jpg", alt="image")
@@ -33,12 +63,23 @@ html
 				img.item(src="assets/images/img-3.jpg", alt="image")
 		
 		h2.state-title 'hover' state
+		.code
+			pre 
+				code.language-javascript
+					|$('.puzzle-slider-3').puzzleSlider({
+					|	state: 'hover'
+					|});
 		.puzzle-slider-3
 			.slides
 				img.item(src="assets/images/img-1.jpg", alt="image")
 				img.item(src="assets/images/img-2.jpg", alt="image")
 				img.item(src="assets/images/img-3.jpg", alt="image")
 		
+		footer
+			p
+				|View Project on 
+				a(href="https://github.com/mahmoudzohdi/puzzleSlider" target="_blank") GitHub
+
 		// scripts
 		script(type="text/javascript" src="assets/js/jquery-1.11.3.min.js")
 		script(type="text/javascript" src="assets/js/prism.min.js")

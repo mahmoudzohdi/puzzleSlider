@@ -9,8 +9,28 @@
     <link rel="stylesheet" href="assets/css/styles.css">
   </head>
   <body lang="en">
-    <div></div>
-    <h2 class="state-title">'auto' state</h2>
+    <h2 class="state-title">Default Settings</h2>
+    <div class="code">
+      <pre><code class="language-javascript">{
+	state: 'auto',
+	slicesX: 6,
+	slicesY: 5,
+	slicesTime: 3000,
+	waitingTime: 4000
+}</code></pre>
+      <p>and MUST add
+        <pre><code class="language-markup">class="item"</code></pre><br>to each img tag like this:
+      </p>
+      <pre><code class="language-markup">&lt;div class="slider-container"&gt;
+	&lt;img src="..." alt="image" class="item"/&gt;
+	&lt;img src="..." alt="image" class="item"/&gt;
+	&lt;img src="..." alt="image" class="item"/&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+    <h2 class="state-title">Simple Usage</h2>
+    <div class="code">
+      <pre> <code class="language-javascript">$('.puzzle-slider-1').puzzleSlider();</code></pre>
+    </div>
     <div class="puzzle-slider-1">
       <div class="slides"><img class="item" src="assets/images/img-1.jpg" alt="image"><img class="item" src="assets/images/img-2.jpg" alt="image"><img class="item" src="assets/images/img-3.jpg" alt="image"></div>
     </div>
@@ -25,9 +45,17 @@
       <div class="slides"><img class="item" src="assets/images/img-1.jpg" alt="image"><img class="item" src="assets/images/img-2.jpg" alt="image"><img class="item" src="assets/images/img-3.jpg" alt="image"></div>
     </div>
     <h2 class="state-title">'hover' state</h2>
+    <div class="code">
+      <pre> <code class="language-javascript">$('.puzzle-slider-3').puzzleSlider({
+	state: 'hover'
+});</code></pre>
+    </div>
     <div class="puzzle-slider-3">
       <div class="slides"><img class="item" src="assets/images/img-1.jpg" alt="image"><img class="item" src="assets/images/img-2.jpg" alt="image"><img class="item" src="assets/images/img-3.jpg" alt="image"></div>
     </div>
+    <footer>
+      <p>View Project on <a href="https://github.com/mahmoudzohdi/puzzleSlider" target="_blank">GitHub</a></p>
+    </footer>
     <!-- scripts-->
     <script type="text/javascript" src="assets/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="assets/js/prism.min.js"></script>
