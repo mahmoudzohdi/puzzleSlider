@@ -14,7 +14,7 @@ module.exports = function(grunt){
 				tasks: ['sass', 'pug', 'uglify']
 			},
 			css: {
-				files: ['scss/*.scss'],
+				files: ['assets/scss/*.scss'],
 				tasks: ['sass'],
 				
 			},
@@ -37,7 +37,7 @@ module.exports = function(grunt){
 				},
 
 				files: {
-					'css/styles.css' : 'scss/styles.scss',
+					'assets/css/styles.css' : 'assets/scss/styles.scss',
 				},
 			},
 		},
@@ -53,13 +53,13 @@ module.exports = function(grunt){
 			  }
 		},
 		jshint: {
-    		src: ['js/puzzleSlider.js', 'js/main.js']
+    		src: ['assets/js/puzzleSlider.js', 'assets/js/main.js']
 		},
 
 		uglify: {
 		    min: {
 		      files: {
-		        'dist/puzzleSlider.min.js': ['js/puzzleSlider.js']
+		        'dist/puzzleSlider.min.js': ['assets/js/puzzleSlider.js']
 		      }
 		    }
 		}
