@@ -1,93 +1,102 @@
 (function($, window, document){
 	$.fn.puzzleSlider = function(options){
-		// handling if parameters have no value
-		var defaults = {
-			state: 'auto',
-			slicesX: 6,
-			slicesY: 5,
-			slicesTime: 3000,
-			waitingTime: 4000
+
+		this.css('overflow', 'hidden');
+
+		options = $.extend({
+							state: 'auto',
+							slicesX: 6,
+							slicesY: 5,
+							slicesTime: 3000,
+							waitingTime: 4000
+						}, options);
+
+		var pluginObj = {
+			slider: this,
+			sliderWidth: this.outerWidth(),
+			sliderHeight: this.outerHeight(),
+			slide: this.find('.item'),
+			slices: null,
+			slicesInner: null,
+			current: 0,
+			slicesLength: options.slicesX * options.slicesY,
+			slicesArray: [],
+			sliceWidth: null,
+			sliceHeight: null,
+			imageSrc: null,
+			selectedSlice: null,
+			slicePosition: null,
+			leftPosition: null,
+			topPosition: null,
+			slicesTime: options.slicesTime / (options.slicesX * options.slicesY)
+
+				
 		};
-
-
-		options = $.extend(defaults, options);
+		// console.log(pluginObj.sliderHeight);
+		// handling if parameters have no value
+		
 
 		// add class to slider
-		this.addClass('puzzle-slider').css('overflow', 'hidden');
+		
 		
 		// variables
-		var slider = this;
-		var sliderWidth = slider.outerWidth();
-		var sliderHeight = slider.outerHeight();
-		var slide = slider.find('.item');
-		var current = 0;
-		var slicesLength = options.slicesX * options.slicesY;
-		var slicesArray = [];
-		var slices;
-		var slicesInner;
-		var sliceWidth;
-		var sliceHeight;
-		var imageSrc;
-		var selectedSlice;
-		var slicesTime = options.slicesTime / (options.slicesX * options.slicesY);
-		var slicePosition;
-		var leftPosition;
-		var topPosition;
+		// var slider = this;
+		
 
 		function sliderInit(){
 			
 			// slices array
 			function slicesArrayFn(){
-				for(var i=0; i < slicesLength; i++){
-					slicesArray.push(i);
+				for(var i=0; i < pluginObj.slicesLength; i++){
+					pluginObj.slicesArray.push(i);
 				}
 			}slicesArrayFn();
 
 			// initialize plguin DOM
 			function initializeDOM(){
-				sliceWidth = sliderWidth / options.slicesX;
-				sliceHeight = sliderHeight / options.slicesY;
+				pluginObj.sliceWidth = pluginObj.sliderWidth / options.slicesX;
+				pluginObj.sliceHeight = pluginObj.sliderHeight / options.slicesY;
 				var slicesNum = options.slicesX * options.slicesY;
 
-				slider.append('<div class="active-slider"></div>');
+				pluginObj.slider.append('<div class="active-slider"></div>');
 
 
 				for(var i = 1; i <= slicesNum; i++){
-					slider.find('.active-slider').css('position', 'relative').append('<span class="slice"><span class="inner-slice"></span></span>');
+					pluginObj.slider.find('.active-slider').css('position', 'relative').append('<span class="slice"><span class="inner-slice"></span></span>');
 				}
 
-				slices = slider.find('.active-slider .slice');
-				slicesInner = slices.find('.inner-slice');
-				slices.width((sliceWidth/ sliderWidth) * 100 + '%').height(sliceHeight);
+				pluginObj.slices = pluginObj.slider.find('.active-slider .slice');
+				pluginObj.slicesInner = pluginObj.slices.find('.inner-slice');
+				pluginObj.slices.width((pluginObj.sliceWidth/ pluginObj.sliderWidth) * 100 + '%').height(pluginObj.sliceHeight);
 
 			}initializeDOM();
 
 			// initialize item image into slices
 			function initializeImages(image){
-				slices.each(function(index){
+				pluginObj.slices.each(function(index){
 					var thisElement = $(this);
-					var positionLeft = index * sliceWidth;
-					var positionTop = index * sliceHeight;
-					slicePosition = thisElement.position();
+					var positionLeft = index * pluginObj.sliceWidth;
+					var positionTop = index * pluginObj.sliceHeight;
+					pluginObj.slicePosition = thisElement.position();
 					var innerThis = thisElement.find('.inner-slice');
-					leftPosition = slicePosition.left;
-					topPosition = slicePosition.top;
+					pluginObj.leftPosition = pluginObj.slicePosition.left;
+					pluginObj.topPosition = pluginObj.slicePosition.top;
 					innerThis.css({
 						'background-image': 'url('+image+')',
-						'background-size': sliderWidth + 'px '+sliderHeight + 'px',
-						'background-position': '-'+leftPosition+'px'+' -'+topPosition+'px',
+						'background-size': pluginObj.sliderWidth + 'px '+pluginObj.sliderHeight + 'px',
+						'background-position': '-'+pluginObj.leftPosition+'px'+' -'+pluginObj.topPosition+'px',
 					});
 				});
-				slide.hide();
+				pluginObj.slide.hide();
 			}
 
 			function SlidesStyle(){
-				slices.width((sliceWidth/ sliderWidth) * 100 + '%').height(sliceHeight).css({
+				pluginObj.slices.width((pluginObj.sliceWidth/ pluginObj.sliderWidth) * 100 + '%').height(pluginObj.sliceHeight).css({
 					'display': 'inline-block',
 					'float': 'left',
 					'background-repeat': 'no-repeat'
 				});
-				slicesInner.css({
+				pluginObj.slicesInner.css({
 					'width': 100 +'%',
 					'height': 100 +'%',
 					'display': 'block',
@@ -99,7 +108,7 @@
 			}SlidesStyle();
 
 			function SlidesActiveStyle(){
-				slices.find('.inner-slice.active').css({
+				pluginObj.slices.find('.inner-slice.active').css({
 					'transition': 'none',
 					'-webkit-transition': 'none',
 					'-moz-transition': 'none',
@@ -109,7 +118,7 @@
 			}
 
 			function removeActiveStyle(){
-				slices.find('.inner-slice.active').css({
+				pluginObj.slices.find('.inner-slice.active').css({
 					'transition': 'opacity 0.5s linear',
 					'-webkit-transition': 'opacity 0.5s linear',
 					'-moz-transition': 'opacity 0.5s linear',
@@ -120,45 +129,45 @@
 
 			// initialize slider
 			function initializeSlider(){
-				imageSrc = slide.eq(current).attr('src');
-				initializeImages(imageSrc);
+				pluginObj.imageSrc = pluginObj.slide.eq(pluginObj.current).attr('src');
+				initializeImages(pluginObj.imageSrc);
 			}initializeSlider();
 
 			// sliding Action
 			function slidingAction(image, hoverElement){
 						var count = 0;
 				if(options.state === 'auto'){
-					for(var i=0; i < slicesLength; i++){
-							selectedSlice = slicesArray[Math.floor(Math.random() * slicesArray.length)];
-							runAction(selectedSlice);
-							slicesArray.splice(slicesArray.indexOf(selectedSlice), 1);
+					for(var i=0; i < pluginObj.slicesLength; i++){
+							pluginObj.selectedSlice = pluginObj.slicesArray[Math.floor(Math.random() * pluginObj.slicesArray.length)];
+							runAction(pluginObj.selectedSlice);
+							pluginObj.slicesArray.splice(pluginObj.slicesArray.indexOf(pluginObj.selectedSlice), 1);
 					}
 				}else if(options.state === 'hover'){
 					runAction(hoverElement);
 				}
 				function runAction(sliceIndex){
 						setTimeout(function(){
-							slices.eq(sliceIndex).find('.inner-slice').addClass('active');
+							pluginObj.slices.eq(sliceIndex).find('.inner-slice').addClass('active');
 							SlidesActiveStyle();
-						}, (slicesTime*i));
+						}, (pluginObj.slicesTime*i));
 
 						setTimeout(function(){
-							slices.eq(sliceIndex).find('.inner-slice');
+							pluginObj.slices.eq(sliceIndex).find('.inner-slice');
 							removeActiveStyle();
-							slices.eq(sliceIndex).find('.inner-slice').css('background-image', 'url('+image+')').removeClass('active');
+							pluginObj.slices.eq(sliceIndex).find('.inner-slice').css('background-image', 'url('+image+')').removeClass('active');
 
 							if(options.state === 'hover'){
-								slices.eq(sliceIndex).find('.inner-slice').parent().addClass('done');
+								pluginObj.slices.eq(sliceIndex).find('.inner-slice').parent().addClass('done');
 							}
 
 							if(options.state === 'auto'){
 								count++;
-								if(count === slicesLength){
+								if(count === pluginObj.slicesLength){
 									slicesArrayFn();
 									slidingFn();
 								}	
 							}
-						}, ((slicesTime *i)+ 10));
+						}, ((pluginObj.slicesTime *i)+ 10));
 				}
 
 			}
@@ -167,34 +176,34 @@
 
 				function autoState(){
 					setTimeout(function(){
-							if(current == (slide.length - 1)){
-								current = 0;
+							if(pluginObj.current == (pluginObj.slide.length - 1)){
+								pluginObj.current = 0;
 							}else{
-								current++;
+								pluginObj.current++;
 							}
-							slidingAction(slide.eq(current).attr('src'));
+							slidingAction(pluginObj.slide.eq(pluginObj.current).attr('src'));
 					}, options.waitingTime);
 				}
 
 				function hoverState(){
-					current++;
-					slices.find('.inner-slice').mouseover(function(){
+					pluginObj.current++;
+					pluginObj.slices.find('.inner-slice').mouseover(function(){
 						if($(this).parents('.slice.done').length === 0){
 							var thisElement = $(this);
-							slidingAction(slide.eq(current).attr('src'), thisElement.parent().index());
+							slidingAction(pluginObj.slide.eq(pluginObj.current).attr('src'), thisElement.parent().index());
 						}
 						setTimeout(function(){
-							if(slider.find('.slice.done').length === slicesLength){
+							if(pluginObj.slider.find('.slice.done').length === pluginObj.slicesLength){
 								setTimeout(checkIfComplete, 50);
 							}
 						}, 10);
 
 					});
 					function checkIfComplete(){
-							slices.removeClass('done');
-							current++;
-							if(current >= slide.length){
-								current = 0;
+							pluginObj.slices.removeClass('done');
+							pluginObj.current++;
+							if(pluginObj.current >= pluginObj.slide.length){
+								pluginObj.current = 0;
 							}					
 					}
 				}
@@ -208,22 +217,22 @@
 			}slidingFn();
 
 			function resizing(){
-				sliderWidth = slider.outerWidth();
-				sliderHeight = slider.outerHeight();
-				slicesInner.css({
-					'background-size': sliderWidth + 'px '+sliderHeight + 'px',
+				pluginObj.sliderWidth = pluginObj.slider.outerWidth();
+				pluginObj.sliderHeight = pluginObj.slider.outerHeight();
+				pluginObj.slicesInner.css({
+					'background-size': pluginObj.sliderWidth + 'px '+pluginObj.sliderHeight + 'px',
 				});
 				// initialize item image into slices
-				sliceHeight = sliderHeight / options.slicesY;
-				slices.height(sliceHeight);
-				slices.each(function(index){
+				pluginObj.sliceHeight = pluginObj.sliderHeight / options.slicesY;
+				pluginObj.slices.height(pluginObj.sliceHeight);
+				pluginObj.slices.each(function(index){
 					var thisElement = $(this);
 					var innerThis = thisElement.find('.inner-slice');
-					slicePosition = thisElement.position();
-					leftPosition = slicePosition.left;
-					topPosition = slicePosition.top;
+					pluginObj.slicePosition = thisElement.position();
+					pluginObj.leftPosition = pluginObj.slicePosition.left;
+					pluginObj.topPosition = pluginObj.slicePosition.top;
 					innerThis.css({
-						'background-position': '-'+leftPosition+'px'+' -'+topPosition+'px',
+						'background-position': '-'+pluginObj.leftPosition+'px'+' -'+pluginObj.topPosition+'px',
 					});
 				});
 			}
