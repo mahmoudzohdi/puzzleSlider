@@ -32,15 +32,6 @@
 
 				
 		};
-		// console.log(pluginObj.sliderHeight);
-		// handling if parameters have no value
-		
-
-		// add class to slider
-		
-		
-		// variables
-		// var slider = this;
 		
 
 		function sliderInit(){
